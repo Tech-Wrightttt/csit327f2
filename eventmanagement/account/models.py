@@ -1,7 +1,5 @@
 from django.db import models
 
-
-
 # Create your models here.
 
 class User(models.Model):
@@ -24,10 +22,17 @@ class Student(User):
 
 class Teacher(User):
     age = models.IntegerField()
+
+
+
+
+class Specialization(models.Model):
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     specialization = models.CharField(max_length=50)
 
 
-
+class Meta:
+     unique_together = ('teacher', 'specialization')
 
 
 
